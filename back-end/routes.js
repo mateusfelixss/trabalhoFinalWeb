@@ -20,9 +20,7 @@ const routes = express()
 
 // Rotas Express
 
-routes.get('/home', (request, response) => {
-    response.send('Home ta funcionando')
-});
+//routes.get('/home', homeController.create);
 
 routes.get('/categoria', (request, response) => {
     response.send('Categoria ta funcionando')
@@ -44,9 +42,7 @@ routes.get('/pagamento', (request, response) => {
     response.send('Pagamento ta funcionando')
 });
 
-routes.get('/cadastroCliente', (request, response) => {
-    response.send('cadastroCliente ta funcionando')
-});
+routes.get('/cadastroCliente', cadastroClienteController.create);
 
 routes.get('/login', (request, response) => {
     response.send('Login ta funcionando')
