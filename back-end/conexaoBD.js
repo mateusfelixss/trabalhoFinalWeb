@@ -5,7 +5,7 @@ const mongoose = require ('mongoose')
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/e-commerce').then((result) => { //lembra de mudar o nome do seu banco teste
+mongoose.connect('mongodb://localhost/testeMongo').then((result) => { //lembra de mudar o nome do seu banco teste
 	console.log('conectado com sucesso..' + result)
 }).catch((err) => {
 	console.log('Deu erro..' + err)
@@ -22,6 +22,7 @@ var userDataSchema_Clientes = new Schema_Clientes({
  data_nascimento: {type: Date, required: true}, //Date ou String..
  sexo: {type: String, required: true}
 }, {collection: 'Clientes'});
+var clientes = mongoose.model('UserData', Schema_Clientes);
 
 var Schema_Empresas = mongoose.Schema;
 var userDataSchema_Empresas = new Schema_Empresas({  
@@ -47,7 +48,7 @@ var userDataSchema_Produtos = new Schema_Produtos({
  nomeProduto: {type: String, required: true},
  tipoProduto: {type: String, required: true},
  valorProduto: {type: Number, required: true},
- codigoEmpresa: Schema_Produtos.Types.ObjectId,
+ //codigoEmpresa: Schema_Produtos.Types.ObjectId,
  descricaoProduto: {type: String, required: true}
 }, {collection: 'Produtos'});
 

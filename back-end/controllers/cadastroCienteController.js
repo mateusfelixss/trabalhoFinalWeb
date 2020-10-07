@@ -7,6 +7,14 @@ const conexaoBD = require('../conexaoBD')
 
 module.exports = {
     create(request, response){
-        response.send((conexaoBD.cadastro.find()))
+        var item = {
+            nome: request.body.nome,
+            email: request.body.email,
+            telefone: request.body.telefone,
+            cpf: request.body.cpf,
+            data_nascimento: request.body.data_nascimento,
+            sexo: request.body.sexo
+        };
+        var data = new clientes(item);
     }
 }
