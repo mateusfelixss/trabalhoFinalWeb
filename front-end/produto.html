@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta charset="utf-8"/>
+    </head>
+
+    <body>
+        <!------ Cabeçalho com o nome da empresa e botão de login ---------->
+        <section class="pt-5 pb-5 bg-dark inner-header">
+            <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
+                <button type="button" class="btn btn-secondary">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" style="margin-right: 15px;">Login</button>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 class="mt-0 mb-3 text-white">Nome da Empresa</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------ Lista de categorias ---------->
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Roupas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Artesanato</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Papelaria</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Eletrônicos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Decoração</a>
+              </li>
+        </ul>
+        
+        <!------ Campo para pesquisa ---------->
+        <form class="form-inline my-2 my-lg-0  justify-content-center" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+        </form>
+
+        <!------ Formulario de produtos ---------->
+        <div> 
+            <form class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate>
+                <h4>Adicionar produto</h4>
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustom01">Nome</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe o nome do produto.
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustom02">Preço</label>
+                    <input type="text" class="form-control" id="validationCustom02" placeholder="Preço" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe seu o preço do produto.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustom01">Descrição</label>
+                      <textarea class="form-control" id="validationCustom01" placeholder="Descrição" required></textarea>
+                      <div class="invalid-feedback">
+                          Por favor, informe uma descrição do produto.
+                      </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" type="submit">Adicionar</button>
+            </form>
+        </div>
+        <div>
+            <form class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate>
+                <h4>Outras operações</h4>
+                <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <input type="text" class="form-control" placeholder="Lista de produtos">
+                  </div>
+                  <div class="col-md-0 mb-3">
+                    <button class="btn btn-secondary" type="button">ATZ</button>                  </div>
+                  <div class="col-md-0 mb-3">
+                    <button class="btn btn-secondary" type="button">DEL</button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
