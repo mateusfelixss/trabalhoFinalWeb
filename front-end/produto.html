@@ -9,8 +9,8 @@
         <!------ Cabeçalho com o nome da empresa e botão de login ---------->
         <section class="pt-5 pb-5 bg-dark inner-header">
             <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
-                <button type="button" class="btn btn-secondary">Cadastrar</button>
-                <button type="button" class="btn btn-secondary" style="margin-right: 15px;">Login</button>
+                <a type="button" class="btn btn-secondary" href="cadastro.html">Cadastrar</a>
+                <a type="button" class="btn btn-secondary" style="margin-right: 15px;" href="login.html">Login</a>
             </div>
             
             <div class="container">
@@ -68,6 +68,15 @@
                   </div>
                 </div>
                 <div class="form-row">
+                  <div class="col-md-4 mb-3">
+                    <label for="validationCustom03">Quantidade</label>
+                    <input type="number" min="0" class="form-control" id="validationCustom02" placeholder="quantidade" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe a quantidade de produto.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
                     <div class="col-md-4 mb-3">
                       <label for="validationCustom01">Descrição</label>
                       <textarea class="form-control" id="validationCustom01" placeholder="Descrição" required></textarea>
@@ -87,7 +96,8 @@
                     <input type="text" class="form-control" placeholder="Lista de produtos">
                   </div>
                   <div class="col-md-0 mb-3">
-                    <button class="btn btn-secondary" type="button">ATZ</button>                  </div>
+                    <button class="btn btn-secondary" type="button">ATZ</button>                  
+                  </div>
                   <div class="col-md-0 mb-3">
                     <button class="btn btn-secondary" type="button">DEL</button>
                   </div>
