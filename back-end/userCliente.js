@@ -18,18 +18,6 @@ const ClienteShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    cpf: {
-        type: String,
-        required: true,
-    },
-    dataNascimento: {
-        type: Date,
-        required: true,
-    },
-    sexo: {
-        type: String,
-        required: true,
-    },
 });
 
 const Cliente = mongoose.model('Cliente', ClienteShema);

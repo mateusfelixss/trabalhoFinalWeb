@@ -173,7 +173,7 @@ router.get('/cadastroProduto', async (request, response) => {
           
     }
 });
-// nao encontra a rota
+// nao encontra a rota      //FAZER AQUI A ROTA DE ATUALIZAÇÂO
 router.put('/cadastroProdto/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameProduto
@@ -202,7 +202,7 @@ router.put('/cadastroProdto/:id', async (request, response) => {
     }
 });
 
-// nao encontra rota
+// nao encontra rota        //FAZER AQUI ROTA DE DELETE
 router.delete('/cadastroProduto/:id', async (request, response) =>{
     const id = request.params.id
 
@@ -216,6 +216,8 @@ router.delete('/cadastroProduto/:id', async (request, response) =>{
 });
 
 
+
+// AUtenticacao de login
 router.post('/login', async (request, response) => {
     const { email, senha } = request.body;
 

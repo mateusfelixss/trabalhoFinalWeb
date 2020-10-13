@@ -5,10 +5,6 @@ const ProdutoShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tipoProduto: {
-        type: String,
-        required: true,
-    },
     valorProduto: {
         type: Number,
         required: true,
