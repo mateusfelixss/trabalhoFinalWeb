@@ -6,7 +6,7 @@ const conexaoBD = require('../conexaoBD')
 // }
 
 module.exports = {
-    create(request, response){
+    index(request, response){
         var item = {
             nome: request.body.nome,
             email: request.body.email,

@@ -1,4 +1,4 @@
-
+/*
 const mongoose = require ('mongoose')
 
 //mongo DB config
@@ -24,8 +24,8 @@ var userDataSchema_Clientes = new Schema_Clientes({
 }, {collection: 'Clientes'});
 var clientes = mongoose.model('UserData', Schema_Clientes);
 
-var Schema_Empresas = mongoose.Schema;
-var userDataSchema_Empresas = new Schema_Empresas({  
+const Schema_Empresas = mongoose.Schema;                // mudei de var para const 11/10 19h
+const userDataSchema_Empresas = new Schema_Empresas({   // mudei de var para const
  nomeEmpresa: {type: String, required: true},  
  emailEmpresa: {type: String, required: true},  
  telefoneEmpresa: {type: String, required: true},
@@ -35,6 +35,7 @@ var userDataSchema_Empresas = new Schema_Empresas({
  cidade: {type: String, required: true},
  tipo_loja: {type: String, required: true} //se é física ou virtual.. se caso for física seria bom pedir o endereço.
 }, {collection: 'Empresas'});
+const empresas = mongoose.model('empresas', userDataSchema_Empresas) //modifiquei isso aqui 11/10 19h
 
 var Schema_Pedidos = mongoose.Schema;
 var userDataSchema_Pedidos = new Schema_Pedidos({ 
@@ -71,4 +72,16 @@ var pessoa = {
  //coisas que podemos precisar mais tarde
  //--var review = location.reviews.find(rev => rev.id == req.params.locationid); //busca o doc com id igual ao passado
 
+module.exports = clientes;
+module.exports = empresas;
 
+module.exports = mongoose;
+*/
+
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/e-comerse', { useUnifiedTopology: true, useNewUrlParser: true });
+
+mongoose.Promise = global.Promise;
+
+module.exports = mongoose;
