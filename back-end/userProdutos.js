@@ -17,11 +17,6 @@ const ProdutoShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // empresa: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Empresa',
-    //     required: true,
-    // },
 });
 
 const Produto = mongoose.model('Produto', ProdutoShema);

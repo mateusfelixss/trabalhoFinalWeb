@@ -1,89 +1,3 @@
-/*
-const express = require('express')
-const { request } = require('http')
-const bodyparser = require('body-parser')
-const mongoose = require('./conexaoBD')
-const portaHttp = 9999
-
-// Chamada dos Controllers
-const homeController = require('./controllers/homeController')
-const categoriaController = require('./controllers/categoriaController')
-const lojaController = require('./controllers/lojaController')
-const detalhesController = require('./controllers/detalhesController')
-const carrinhoControlller = require('./controllers/carrinhoController')
-const pagamentoController = require('./controllers/pagamentoController')
-const cadastroClienteController = require('./controllers/cadastroCienteController') 
-const logiController = require('./controllers/loginController')
-const admEmpresaController = require('./controllers/admEmpresaController')
-const admSiteController = require('./controllers/admSiteController')
-
-// Inicializaçao do express
-const routes = express.Router();
-
-// Rotas Express
-
-//routes.get('/home', homeController.create);
-
-routes.get('/categoria', (request, response) => {
-    response.send('Categoria ta funcionando')
-});
-
-routes.get('/loja', (request, response) => {
-    response.send('Loja ta funcionando')
-});
-
-routes.get('/detalhes', (request, response)  => {
-    response.send('Detalhes tá funcionando')
-});
-
-routes.get('/carrinho', (request, response) => {
-    response.send('Carrinho tá funcionando')
-});
-
-routes.get('/pagamento', (request, response) => {
-    response.send('Pagamento ta funcionando')
-});
-
-routes.get('/cadastroCliente', cadastroClienteController.index);
-
-routes.get('/login', (request, response) => {
-    response.send('Login ta funcionando')
-});
-
-routes.get('/admEmpresa', admEmpresaController.index());
-routes.post('/admEmrpesa', function(request, response){
-    //essa funcao adiciona uma nova empresa ao BD
-    var item = {
-        nomeEmpresa: request.body.nomeEmpresa,
-        emailEmpresa: request.body.emailEmpresa,
-        telefoneEmpresa: request.body.telefoneEmpresa,
-        cnpj: request.body.cnpj,
-        org: request.body.org,
-        cidade: request.body.cidade,
-        tipo_loja: request.body.tipo_loja   
-    };
-    var data = new empresas(item);
-    data.save();
-
-    //delete
-    function apagar(request){
-    var id = request.body.id;
-    empresas.findByIdAndRemove(id).exec();
-    }
-});
-
-routes.delete('/admEmpresa/:id', admEmpresaController.delete)
-
-routes.get('/admSite')
-
-
-module.exports = routes; //acho que isso nao esta funcionando. nao sei pq
-
-routes.listen(portaHttp, () => {
-    console.log('Servidor executando na porta: ' + portaHttp)
-});
-*/
-
 const { request, response, params } = require('express');
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -97,12 +11,7 @@ const router = express.Router();
 
 //rota de cadastro de cliente
 router.post('/cadastroCliente', async (request,response) => {
-  //  const { email } = request.body;
-  //  const { cpf } = request.body;
-  //  response.render('teste.ejs')
     try{
-    //    if(await cliente.findOne({email}))
-    //        return response.status(400).send({ error: 'email já usado'});
         const cliente = await userCliente.create(request.body);
 
         return response.send({ cliente });
@@ -149,7 +58,6 @@ router.get('/admEmpresa', async (request, response) => {
 });
 
 
-
 //rota de cadastro de produto
 router.post('/cadastroProduto', async (request,response) => {  
     try{
@@ -182,8 +90,6 @@ router.put('/cadastroProduto/:id', async (request, response) => {
     const qtd = request.body.qtdProduto
     const description = request.body.descricaoProduto
     try {
-
-
         const produto = await userProduto.findByIdAndUpdate(id,{
             $set: {
                 nameProduto: nome,
@@ -201,9 +107,6 @@ router.put('/cadastroProduto/:id', async (request, response) => {
     }
 });
 
-
-
-
 // nao encontra rota        //FAZER AQUI ROTA DE DELETE
 router.delete('/cadastroProduto/:id', async (request, response) =>{
     const id = request.params.id;
@@ -217,8 +120,6 @@ router.delete('/cadastroProduto/:id', async (request, response) =>{
         response.status(500).send({message: 'deu ruim ao remover'})
     }
 });
-
-
 
 // AUtenticacao de login
 router.post('/login', async (request, response) => {
