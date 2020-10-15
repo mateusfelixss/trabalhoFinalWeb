@@ -21,7 +21,7 @@ router.post('/cadastroCliente', async (request,response) => {
     }
 });
 
-//retorna codigo 200 de sucesso, mas nao exibe nada
+//busca de clientes
 router.get('/cadastroCliente', async (request, response) => {
     try{
         const cliente = await userCliente.find(request.body);
@@ -32,7 +32,43 @@ router.get('/cadastroCliente', async (request, response) => {
           
     }
 });
+//atualizacao de clientes
+router.put('/cadastroCliente/:id', async (request, response) => {
+    const id = request.params.id;
+    const name = request.body.name
+    const email = request.body.email
+    const senha = request.body.senha
+    const telefone = request.body.telefone
+    try {
+        const cliente = await userCliente.findByIdAndUpdate(id,{
+            $set: {
+                name: name,
+                email: email,
+                senha: senha,
+                telefone: telefone,
+            },
+        
+        });
+        return response.send({ cliente })
+    } catch (error) {
+        console.log(error);
+        return response.status(400).send({error: 'Falha na atualização do Produto'});
+    }
+});
 
+//delete de clientes
+router.delete('/cadastroCliente/:id', async (request, response) =>{
+    const id = request.params.id;
+    try {
+       const cliente = await userCliente.findByIdAndDelete(id, (err, result) => {
+            if(err)
+                return response.send(500, err)
+        return response.send(result)
+       })
+    } catch (error) {
+        response.status(500).send({message: 'deu ruim ao remover'})
+    }
+});
 
 //rota de cadastro de empresa
 router.post('/admEmpresa', async (request,response) => {  
@@ -45,7 +81,7 @@ router.post('/admEmpresa', async (request,response) => {
           return response.status(400).send({error: 'Falha no Cadastrado de Empresa'});
       }
   });
-// funciona
+// busca de empresas
 router.get('/admEmpresa', async (request, response) => {
     try{
         const empresa = await userEmpresa.find(request.body);
@@ -54,6 +90,52 @@ router.get('/admEmpresa', async (request, response) => {
         console.log(err);
         return response.status(400).send({error: 'Falha na busca de Empresas'});
           
+    }
+});
+// atualizacao de empresa
+router.put('/admEmpresa/:id', async (request, response) => {
+    const id = request.params.id;
+    const nome = request.body.nameEmpresa
+    const email = request.body.emailEmpresa
+    const telefone = request.body.telefone
+    const cnpj = request.body.cnpj
+    const ramo = request.body.ramo
+    const org = request.body.org
+    const city = request.body.cidade
+    const tipoloja = request.body.tipoLoja
+    try {
+        const empresa = await userEmpresa.findByIdAndUpdate(id,{
+            $set: {
+                nameEmpresa: nome,
+                emailEmpresa: email,
+                telefone: telefone,
+                cnpj: cnpj,
+                ramo: ramo,
+                org: org,
+                cidade: city,
+                tipoLoja: tipoloja  
+
+            },
+        
+        });
+        return response.send({ empresa })
+    } catch (error) {
+        console.log(error);
+        return response.status(400).send({error: 'Falha na atualização do Produto'});
+    }
+});
+
+//Delete de empresas
+router.delete('/admEmpresa/:id', async (request, response) =>{
+    const id = request.params.id;
+    try {
+       const empresa = await userEmpresa.findByIdAndDelete(id, (err, result) => {
+            if(err)
+                return response.send(500, err)
+        return response.send(result)
+       })
+    } catch (error) {
+        response.status(500).send({message: 'deu ruim ao remover'})
     }
 });
 
@@ -70,7 +152,7 @@ router.post('/cadastroProduto', async (request,response) => {
     }
 });
 
-// funciona
+// busca de produto
 router.get('/cadastroProduto', async (request, response) => {
     try{
         const produto = await userProduto.find(request.body);
@@ -81,7 +163,7 @@ router.get('/cadastroProduto', async (request, response) => {
           
     }
 });
-// nao encontra a rota      //FAZER AQUI A ROTA DE ATUALIZAÇÂO
+//Update de protudo
 router.put('/cadastroProduto/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameProduto
@@ -107,7 +189,7 @@ router.put('/cadastroProduto/:id', async (request, response) => {
     }
 });
 
-// nao encontra rota        //FAZER AQUI ROTA DE DELETE
+// delete de produto
 router.delete('/cadastroProduto/:id', async (request, response) =>{
     const id = request.params.id;
     try {
