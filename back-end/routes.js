@@ -1,20 +1,31 @@
 const { request, response, params } = require('express');
 const express = require('express')
-const bodyParser = require('body-parser')
+const bodyparser = require('body-parser')
+const handlebars = require('express-handlebars')
 
 const userCliente = require('../back-end/userCliente');
 const userEmpresa = require('../back-end/userEmpresas');
 const userProduto = require('../back-end/userProdutos');
 
-const router = express.Router();
+const router = express();
 
+router.engine('handlebars', handlebars({defaultLayout: 'main'}))
+//router.engine('handlebars', hbs.engine)
+router.set('view engine', 'handlebars')
+router.use(bodyparser.urlencoded({extended: true}))
+router.use(bodyparser.json())
+
+router.get('/', (request, response) => {
+    response.render('index');
+});
 
 //rota de cadastro de cliente
 router.post('/cadastroCliente', async (request,response) => {
     try{
+       // response.render('cadastro')
         const cliente = await userCliente.create(request.body);
 
-        return response.send({ cliente });
+        return response.render('index');
     }catch(err){
         console.log(err);
         return response.status(400).send({error: 'Falha no Cadastrado'});
@@ -23,29 +34,37 @@ router.post('/cadastroCliente', async (request,response) => {
 
 //busca de clientes
 router.get('/cadastroCliente', async (request, response) => {
-    try{
-        const cliente = await userCliente.find(request.body);
-        return response.send({ cliente });
-    }catch(err){
-        console.log(err);
-        return response.status(400).send({error: 'Falha na busca de Clientes'});
+    response.render('cadastro')
+    // try{
+    //     const cliente = await userCliente.find(request.body);
+    //     return response.send({ cliente });
+    // }catch(err){
+    //     console.log(err);
+    //     return response.status(400).send({error: 'Falha na busca de Clientes'});
           
-    }
+    // }
 });
 //atualizacao de clientes
 router.put('/cadastroCliente/:id', async (request, response) => {
     const id = request.params.id;
     const name = request.body.name
+    const sobrenome = request.body.sobrenome
     const email = request.body.email
     const senha = request.body.senha
-    const telefone = request.body.telefone
+    const cidade = request.body.cidade
+    const estado = request.body.estado
+    const cep = request.body.cep
     try {
         const cliente = await userCliente.findByIdAndUpdate(id,{
             $set: {
                 name: name,
+                sobrenome: sobrenome,
                 email: email,
                 senha: senha,
-                telefone: telefone,
+                cidade: cidade,
+                estado: estado,
+                cep: cep,
+                
             },
         
         });
@@ -70,6 +89,12 @@ router.delete('/cadastroCliente/:id', async (request, response) =>{
     }
 });
 
+
+router.get('/detalhes', (request, response) => {
+    response.render('detalhes')
+})
+
+
 //rota de cadastro de empresa
 router.post('/admEmpresa', async (request,response) => {  
       try{
@@ -81,17 +106,22 @@ router.post('/admEmpresa', async (request,response) => {
           return response.status(400).send({error: 'Falha no Cadastrado de Empresa'});
       }
   });
+
+
 // busca de empresas
 router.get('/admEmpresa', async (request, response) => {
-    try{
-        const empresa = await userEmpresa.find(request.body);
-        return response.send({ empresa })
-    }catch(err){
-        console.log(err);
-        return response.status(400).send({error: 'Falha na busca de Empresas'});
+    response.render('cadastroEmpresa')
+    // try{
+    //     const empresa = await userEmpresa.find(request.body);
+    //     return response.send({ empresa })
+    // }catch(err){
+    //     console.log(err);
+    //     return response.status(400).send({error: 'Falha na busca de Empresas'});
           
-    }
+    // }
 });
+
+
 // atualizacao de empresa
 router.put('/admEmpresa/:id', async (request, response) => {
     const id = request.params.id;
@@ -154,14 +184,15 @@ router.post('/cadastroProduto', async (request,response) => {
 
 // busca de produto
 router.get('/cadastroProduto', async (request, response) => {
-    try{
-        const produto = await userProduto.find(request.body);
-        return response.send({ produto })
-    }catch(err){
-        console.log(err);
-        return response.status(400).send({error: 'Falha na busca de PRodutos'});
+    response.render('produto')
+    // try{
+    //     const produto = await userProduto.find(request.body);
+    //     return response.send({ produto })
+    // }catch(err){
+    //     console.log(err);
+    //     return response.status(400).send({error: 'Falha na busca de PRodutos'});
           
-    }
+    // }
 });
 //Update de protudo
 router.put('/cadastroProduto/:id', async (request, response) => {
@@ -204,19 +235,20 @@ router.delete('/cadastroProduto/:id', async (request, response) =>{
 });
 
 // AUtenticacao de login
-router.post('/login', async (request, response) => {
-    const { email, senha } = request.body;
+router.get('/login', async (request, response) => {
+    response.render('login')
+    // const { email, senha } = request.body;
 
-    const user = await userCliente.findOne({ email }).select('+senha');
+    // const user = await userCliente.findOne({ email }).select('+senha');
 
-    if(!user)
-        return response.status(400).send({error: 'Usuario nao encontrado'});
+    // if(!user)
+    //     return response.status(400).send({error: 'Usuario nao encontrado'});
 
-    // if(!compare(senha, user.senha))
-    //     return response.status(400).send({ error: 'Senha invalida'});
+    // // if(!compare(senha, user.senha))
+    // //     return response.status(400).send({ error: 'Senha invalida'});
 
     
-    response.send({ user });
+    // response.send({ user });
 });
 
 module.exports = app => app.use('/', router);

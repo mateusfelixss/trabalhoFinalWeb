@@ -5,6 +5,10 @@ const ClienteShema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    sobrenome: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -14,7 +18,15 @@ const ClienteShema = new mongoose.Schema({
         required: true,
         select: false,
     },
-    telefone: {
+    cidade: {
+        type: String,
+        required: true,
+    },
+    estado: {
+        type: String,
+        required: true,
+    },
+    cep: {
         type: String,
         required: true,
     },
