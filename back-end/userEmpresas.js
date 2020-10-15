@@ -29,10 +29,6 @@ const EmpresaShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tipoLoja: {
-        type: String,
-        required: true,
-    },
 });
 
 const Empresa = mongoose.model('Empresa', EmpresaShema);

@@ -132,7 +132,6 @@ router.put('/admEmpresa/:id', async (request, response) => {
     const cep = request.body.cep
     const estado = request.body.estado
     const city = request.body.cidade
-    const tipoloja = request.body.tipoLoja
     try {
         const empresa = await userEmpresa.findByIdAndUpdate(id,{
             $set: {
@@ -142,9 +141,7 @@ router.put('/admEmpresa/:id', async (request, response) => {
                 ramo: ramo,
                 cep: cep,
                 estado: estado,
-                cidade: city,
-                tipoLoja: tipoloja  
-
+                cidade: city, 
             },
         
         });
@@ -169,13 +166,13 @@ router.delete('/admEmpresa/:id', async (request, response) =>{
     }
 });
 
-
+//feito
 //rota de cadastro de produto
 router.post('/cadastroProduto', async (request,response) => {  
     try{
         const produto = await userProduto.create(request.body);
 
-        return response.send({ produto });
+        return response.render('produto');
     }catch(err){
         console.log(err);
         return response.status(400).send({error: 'Falha no Cadastrado de Produto'});

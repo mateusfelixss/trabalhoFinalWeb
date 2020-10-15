@@ -1,8 +1,7 @@
         <!------ Cabeçalho com o nome da empresa e botão de login ---------->
         <section class="pt-5 pb-5 bg-dark inner-header">
             <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
-                <a type="button" class="btn btn-secondary" href="cadastro.html">Cadastrar</a>
-                <a type="button" class="btn btn-secondary" style="margin-right: 15px;" href="login.html">Login</a>
+                <a href="/login" class="btn btn-secondary" style="margin-right: 15px;">Login</a>
             </div>
             
             <div class="container">
@@ -43,18 +42,18 @@
         <div class="card border-dark mb-3" style="width: 93%; margin-left: 50px; margin-top: 50px; margin-bottom: 50px;">
             <div class="card-body">
                 <h5 class="card-title">Cadastro</h5>
-                <form action="" method="POST" class="needs-validation" novalidate>    <!-- inicio do form-->
+                <form method="POST" action="" method="POST" class="needs-validation" novalidate>    <!-- inicio do form-->
                     <div class="form-row">
                       <div class="col-md-4 mb-3">
                         <label for="validationCustom01">Primeiro nome</label>
-                        <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
+                        <input name="nameEmpresa" type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
                         <div class="invalid-feedback">
                             Por favor, informe seu primeiro nome.
                         </div>
                       </div>
                       <div class="col-md-4 mb-3">
                         <label for="validationCustom02">CNPJ</label>
-                        <input type="text" class="form-control" id="validationCustom02" placeholder="CNPJ" required>
+                        <input name="cnpj" type="text" class="form-control" id="validationCustom02" placeholder="CNPJ" required>
                         <div class="invalid-feedback">
                             Por favor, informe seu CNPJ.
                         </div>
@@ -63,7 +62,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                           <label for="validationCustom02">E-mail</label>
-                          <input type="email" class="form-control" id="validationCustom02" placeholder="ex: exemplo@gmail.com" required>
+                          <input name="emailEmpresa" type="email" class="form-control" id="validationCustom02" placeholder="ex: exemplo@gmail.com" required>
                           <div class="invalid-feedback">
                               Por favor, informe um e-mail.
                           </div>
@@ -81,21 +80,21 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom03">Cidade</label>
-                        <input type="text" class="form-control" id="validationCustom03" placeholder="Cidade" required>
+                        <input name="cidade" type="text" class="form-control" id="validationCustom03" placeholder="Cidade" required>
                         <div class="invalid-feedback">
                           Por favor, informe uma cidade válida.
                         </div>
                       </div>
                       <div class="col-md-3 mb-3">
                         <label for="validationCustom04">Estado</label>
-                        <input type="text" class="form-control" id="validationCustom04" placeholder="Estado" required>
+                        <input name="estado" type="text" class="form-control" id="validationCustom04" placeholder="Estado" required>
                         <div class="invalid-feedback">
                           Por favor, informe um estado válido.
                         </div>
                       </div>
                       <div class="col-md-3 mb-3">
                         <label for="validationCustom05">CEP</label>
-                        <input type="text" class="form-control" id="validationCustom05" placeholder="CEP" required>
+                        <input name="cep" type="text" class="form-control" id="validationCustom05" placeholder="CEP" required>
                         <div class="invalid-feedback">
                           Por favor, informe um CEP válido.
                         </div>
@@ -104,7 +103,7 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                           <label for="validationCustom03">Ramo</label>
-                          <select class="form-control" required>
+                          <select name="ramo" class="form-control" required>
                             <option  selected="selected" style=" display: none;">Selecione uma opção</option>
                             <option>Roupas</option>
                             <option>Artesanato</option>
