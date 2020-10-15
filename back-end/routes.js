@@ -97,10 +97,10 @@ router.put('/admEmpresa/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameEmpresa
     const email = request.body.emailEmpresa
-    const telefone = request.body.telefone
     const cnpj = request.body.cnpj
     const ramo = request.body.ramo
-    const org = request.body.org
+    const cep = request.body.cep
+    const estado = request.body.estado
     const city = request.body.cidade
     const tipoloja = request.body.tipoLoja
     try {
@@ -108,10 +108,10 @@ router.put('/admEmpresa/:id', async (request, response) => {
             $set: {
                 nameEmpresa: nome,
                 emailEmpresa: email,
-                telefone: telefone,
                 cnpj: cnpj,
                 ramo: ramo,
-                org: org,
+                cep: cep,
+                estado: estado,
                 cidade: city,
                 tipoLoja: tipoloja  
 

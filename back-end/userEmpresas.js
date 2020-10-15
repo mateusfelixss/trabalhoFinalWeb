@@ -9,10 +9,6 @@ const EmpresaShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    telefoneEmpresa: {
-        type: String,
-        required: true,
-    },
     cnpj: {
         type: String,
         required: true,
@@ -21,7 +17,11 @@ const EmpresaShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    org: {
+    cep: {
+        type: String,
+        required: true,
+    },
+    estado: {
         type: String,
         required: true,
     },
