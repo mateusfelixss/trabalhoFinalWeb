@@ -174,7 +174,7 @@ router.get('/cadastroProduto', async (request, response) => {
     }
 });
 // nao encontra a rota      //FAZER AQUI A ROTA DE ATUALIZAÇÂO
-router.put('/cadastroProdto/:id', async (request, response) => {
+router.put('/cadastroProduto/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameProduto
     const tipo = request.body.tipoProduto
@@ -184,7 +184,7 @@ router.put('/cadastroProdto/:id', async (request, response) => {
     try {
 
 
-        const produto = await userProduto.updateOne({_id: ObjectId(id)},{
+        const produto = await userProduto.findByIdAndUpdate(id,{
             $set: {
                 nameProduto: nome,
                 tipoProduto: tipo,
@@ -194,25 +194,28 @@ router.put('/cadastroProdto/:id', async (request, response) => {
             },
         
         });
-        console.log(response.status)
         return response.send({ produto })
     } catch (error) {
-        console.log(err);
+        console.log(error);
         return response.status(400).send({error: 'Falha na atualização do Produto'});
     }
 });
 
+
+
+
 // nao encontra rota        //FAZER AQUI ROTA DE DELETE
 router.delete('/cadastroProduto/:id', async (request, response) =>{
-    const id = request.params.id
-
-    const produto = await userProduto.deleteOne({_id: ObjectId(id)}, (err, result) => {
-        if(err)
-            return response.send(500, err)
-        console.log('Deletado com sucesso')
-      //  return response.send({ produto })
-    })
-
+    const id = request.params.id;
+    try {
+       const produto = await userProduto.findByIdAndDelete(id, (err, result) => {
+            if(err)
+                return response.send(500, err)
+        return response.send(result)
+       })
+    } catch (error) {
+        response.status(500).send({message: 'deu ruim ao remover'})
+    }
 });
 
 

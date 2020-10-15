@@ -14,3 +14,4 @@ app.get('/', (request, response) => {
 require('../back-end/routes')(app);
 
 app.listen(9999);
+console.log('Servidor ligado com sucesso')
