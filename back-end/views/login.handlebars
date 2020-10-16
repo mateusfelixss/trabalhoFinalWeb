@@ -42,11 +42,11 @@
         <div class="card border-dark mb-3" style="width: 30%; margin-left: 35%; margin-top: 50px; margin-bottom: 50px;">
             <div class="card-body">
                 <h5 class="card-title" style="margin-left: 40%;">Login</h5>
-                <form class="needs-validation" novalidate>
+                <form method="POST" class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                       <label for="validationCustom02">Login</label>
-                      <input type="text" class="form-control" id="validationCustom02" placeholder="username" required>
+                      <input name="email" type="text" class="form-control" id="validationCustom02" placeholder="username" required>
                       <div class="invalid-feedback">
                           Por favor, informe um login.
                       </div>
@@ -55,7 +55,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                       <label for="validationCustom02">Senha</label>
-                      <input type="password" class="form-control" id="validationCustom02" placeholder="password" required>
+                      <input name="senha" type="password" class="form-control" id="validationCustom02" placeholder="password" required>
                       <div class="invalid-feedback">
                           Por favor, informe uma senha.
                       </div>

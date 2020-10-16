@@ -108,12 +108,12 @@ router.get('/detalhes', (request, response) => {
 //rota de cadastro de empresa
 router.post('/admEmpresa', async (request,response) => {  
       try{
-          const empresa = await userEmpresa.create(request.body);
+        const empresa = await userEmpresa.create(request.body);
   
-          return response.send({ empresa });
+        response.redirect('/');
       }catch(err){
-          console.log(err);
-          return response.status(400).send({error: 'Falha no Cadastrado de Empresa'});
+        console.log(err);
+        return response.status(400).send({error: 'Falha no Cadastrado de Empresa'});
       }
   });
 
@@ -179,19 +179,19 @@ router.delete('/admEmpresa/:id', async (request, response) =>{
 });
 
 //feito
-//rota de cadastro de produto
+//rota de cadastro de produto  ta funcionando
 router.post('/cadastroProduto', async (request,response) => {  
     try{
         const produto = await userProduto.create(request.body);
 
-        return response.render('./produto');
+        return response.redirect('./cadastroProduto');
     }catch(err){
         console.log(err);
         return response.status(400).send({error: 'Falha no Cadastrado de Produto'});
     }
 });
 
-// busca de produto
+// lista produto ta funcionando
 router.get('/cadastroProduto', async (request, response) => {
     //response.render('produto')
     try{
@@ -204,11 +204,11 @@ router.get('/cadastroProduto', async (request, response) => {
           
     }
 });
+
 //Update de protudo
-router.put('/cadastroProduto/:id', async (request, response) => {
+router.get('/cadastroProdutoAtt/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameProduto
-    const tipo = request.body.tipoProduto
     const valorPro = request.body.valorProduto
     const qtd = request.body.qtdProduto
     const description = request.body.descricaoProduto
@@ -216,30 +216,31 @@ router.put('/cadastroProduto/:id', async (request, response) => {
         const produto = await userProduto.findByIdAndUpdate(id,{
             $set: {
                 nameProduto: nome,
-                tipoProduto: tipo,
                 valorProduto: valorPro,
                 qtdProduto: qtd,
                 descricaoProduto: description,
             },
         
         });
-        return response.send({ produto })
+        response.send({ produto })
+        //response.redirect('/cadastroProduto')
     } catch (error) {
         console.log(error);
         return response.status(400).send({error: 'Falha na atualização do Produto'});
     }
 });
 
-// delete de produto
+// delete de produto FUncionando
 router.get('/cadastroProduto/:id', async (request, response) =>{
     const id = request.params.id;
     try {
        const produtos = await userProduto.findByIdAndDelete(id, (err, result) => {
         //console.log(produtos)
-        response.render('./produto', { produtos: produtos.map( produtos => produtos.toJSON()) })
+       // response.render('./produto', { produtos: produtos.map( produtos => produtos.toJSON()) })
+        return response.redirect('./')
             if(err)
                 return response.send(500, err)
-      //  return response.redirect('./produto')
+        
        })
     } catch (error) {
         response.status(500).send({message: 'deu ruim ao remover'})
@@ -260,7 +261,58 @@ router.get('/login', async (request, response) => {
     // //     return response.status(400).send({ error: 'Senha invalida'});
 
     
-    // response.send({ user });
+    response.send({ user });
 });
+router.get('/logadoEmpresa', async (request, response) => {
+    //response.render('index')
+    try{
+        const empresas = await userEmpresa.find(request.body);
+        console.log(empresas)
+        response.render('./logadoEmpresa', { empresas: empresas.map( empresa => empresa.toJSON()) })
+    }catch(err){
+        console.log(err);
+        return response.status(400).send({error: 'Falha na busca de Empresas'});
+          
+    }
+
+});
+
+router.get('/logado', async (request, response) => {
+    //response.render('index')
+    try{
+        const empresas = await userEmpresa.find(request.body);
+        console.log(empresas)
+        response.render('./logado', { empresas: empresas.map( empresa => empresa.toJSON()) })
+    }catch(err){
+        console.log(err);
+        return response.status(400).send({error: 'Falha na busca de Empresas'});
+          
+    }
+
+});
+
+
+router.post('/login', async (request, response) => {
+    //response.render('login')
+    const { email } = request.body.email;
+
+    const userEmp = await userEmpresa.findOne({ email });
+    const userCli = await userCliente.findOne({ email });
+    
+    //console.log(userCli)
+    //console.log(userEmp)
+
+    if(userEmp.email == email)
+        response.redirect('/logadoEmpresa')
+    else if(userCli.email != null)
+        response.redirect('/logado')
+    else
+        return response.status(400).send({error: 'Usuario nao encontrado'});
+
+    // if(!compare(senha, user.senha))
+    //     return response.status(400).send({ error: 'Senha invalida'});
+});
+
+
 
 module.exports = app => app.use('/', router);
