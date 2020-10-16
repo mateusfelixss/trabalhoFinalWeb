@@ -89,7 +89,7 @@
 
 {{#each produtos}}
 <div>
-  <form class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate >
+  <form method="POST" class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate >
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validationCustom01">Nome</label>
@@ -128,13 +128,11 @@
       </div>
     </div>
 
-  
-    
-    <a href="/cadastroProduto/{{_id}}" class="btn btn-secondary" type="submit">Deletar</a> 
-    <a href="/cadastroProdutoAtt/{{_id}}" class="btn btn-secondary" type="submit">Atualizar</a>
+    <a href="/cadastroProduto/{{_id}}" class="btn btn-secondary" type="submit">Atualizar</a>
 
- 
-    
+    <form method="GET"  >
+      <a href="/cadastroProduto/{{_id}}" class="btn btn-secondary" type="submit">Deletar</a>
+    </form> 
 
   </form>
 </div>

@@ -35,7 +35,7 @@ router.post('/cadastroCliente', async (request,response) => {
        // response.render('cadastro')
         const cliente = await userCliente.create(request.body);
 
-        return response.render('index');
+        return response.redirect('/logado');
     }catch(err){
         console.log(err);
         return response.status(400).send({error: 'Falha no Cadastrado'});
@@ -100,9 +100,22 @@ router.delete('/cadastroCliente/:id', async (request, response) =>{
 });
 
 
+router.get('/loja', (request, response) => {
+    response.render('loja')
+})
+
 router.get('/detalhes', (request, response) => {
     response.render('detalhes')
 })
+
+router.get('/carrinho', (request, response) => {
+    response.render('carrinho')
+})
+
+router.get('/finalizarCompra', (request, response) => {
+    response.render('compra')
+})
+
 
 
 //rota de cadastro de empresa
@@ -206,12 +219,17 @@ router.get('/cadastroProduto', async (request, response) => {
 });
 
 //Update de protudo
-router.get('/cadastroProdutoAtt/:id', async (request, response) => {
+router.post('/cadastroProdutoAtt/:id', async (request, response) => {
     const id = request.params.id;
     const nome = request.body.nameProduto
     const valorPro = request.body.valorProduto
     const qtd = request.body.qtdProduto
     const description = request.body.descricaoProduto
+    console.log(nome)
+    console.log(valorPro)
+    console.log(qtd)
+    console.log(description)
+
     try {
         const produto = await userProduto.findByIdAndUpdate(id,{
             $set: {
@@ -229,6 +247,8 @@ router.get('/cadastroProdutoAtt/:id', async (request, response) => {
         return response.status(400).send({error: 'Falha na atualização do Produto'});
     }
 });
+
+
 
 // delete de produto FUncionando
 router.get('/cadastroProduto/:id', async (request, response) =>{
