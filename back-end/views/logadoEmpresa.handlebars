@@ -1,0 +1,57 @@
+!------ Cabeçalho com o nome da empresa e botão de login ---------->
+<section class="pt-5 pb-5 bg-dark inner-header">
+  <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
+    <a href="/produto" class="btn btn-secondary" style="margin-right: 15px;">Cadastro Produtos</a>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="mt-0 mb-3 text-white">Nome da Empresa</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!------ Lista de categorias ---------->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Roupas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Artesanato</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Papelaria</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Eletrônicos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Decoração</a>
+  </li>
+</ul>
+
+<!------ Campo para pesquisa ---------->
+<form class="form-inline my-2 my-lg-0  justify-content-center">
+  <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+</form>
+
+
+{{#each empresas}}
+<!------ Card de exposição das empressas cadastradas ---------->
+<div class="row">
+  <div class="col-md-4" style="margin-top: 25px; margin-left: 25px;">
+    <div class="card mb-4">
+      <img class="card-img-top" src="logo.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 name="nameEmpresa" class="card-title">{{nameEmpresa}}</h5>
+        <p class="card-text">Roupas e acessórios vintage de ótima qualidade.</p>
+        <a href="loja.html" class="btn btn-outline-dark btn-sm">Visite a loja</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+{{/each}}
