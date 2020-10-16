@@ -15,9 +15,27 @@ router.set('view engine', 'handlebars')
 router.use(bodyparser.urlencoded({extended: true}))
 router.use(bodyparser.json())
 
-router.get('/', (request, response) => {
-    response.render('index');
+router.get('/', async (request, response) => {
+        //response.render('index')
+        try{
+            const empresas = await userEmpresa.find(request.body);
+            console.log(empresas)
+            response.render('./index', { empresas: empresas.map( empresa => empresa.toJSON()) })
+        }catch(err){
+            console.log(err);
+            return response.status(400).send({error: 'Falha na busca de Empresas'});
+              
+        }
+    
 });
+
+// router.get('/', function(req, res, next) {
+//     Content.find(function(err, content) {
+//       res.render('index', { title: 'Node Project', contents: content });
+//   });
+// });
+
+
 
 //rota de cadastro de cliente
 router.post('/cadastroCliente', async (request,response) => {
@@ -110,16 +128,18 @@ router.post('/admEmpresa', async (request,response) => {
 
 // busca de empresas
 router.get('/admEmpresa', async (request, response) => {
-    response.render('cadastroEmpresa')
-    // try{
-    //     const empresa = await userEmpresa.find(request.body);
-    //     return response.send({ empresa })
-    // }catch(err){
-    //     console.log(err);
-    //     return response.status(400).send({error: 'Falha na busca de Empresas'});
+    
+    try{
+        const empresa = await userEmpresa.find(request.body);
+        console.log(empresa)
+        response.render('/admEmpresa', { empresa: empresa.toJSON() })
+    }catch(err){
+        console.log(err);
+        return response.status(400).send({error: 'Falha na busca de Empresas'});
           
-    // }
+    }
 });
+
 
 
 // atualizacao de empresa

@@ -1,4 +1,6 @@
 const mongoose = require('../back-end/conexaoBD');
+const ProdutoShema = require('./userProdutos');
+//const userProduto = require('../back-end/userProdutos')
 
 const EmpresaShema = new mongoose.Schema({
     nameEmpresa: {
@@ -29,6 +31,7 @@ const EmpresaShema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    //produtos: [Produto]
 });
 
 const Empresa = mongoose.model('Empresa', EmpresaShema);
