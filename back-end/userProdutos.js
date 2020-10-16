@@ -26,7 +26,7 @@ const ProdutoShema = new mongoose.Schema({
 
 const Produto = mongoose.model('Produto', ProdutoShema);
 
-module.exports = ProdutoShema;
+//module.exports = ProdutoShema;
 module.exports = Produto;
 /*
 const mongoose = require('mongoose')

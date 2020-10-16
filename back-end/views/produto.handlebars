@@ -1,84 +1,147 @@
-        <!------ Cabeçalho com o nome da empresa e botão de login ---------->
-        <section class="pt-5 pb-5 bg-dark inner-header">
-            <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
-                <a href="/login" class="btn btn-secondary" style="margin-right: 15px;">Login</a>
-            </div>
-            
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h1 class="mt-0 mb-3 text-white">Nome da Empresa</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!------ Cabeçalho com o nome da empresa e botão de login ---------->
+<section class="pt-5 pb-5 bg-dark inner-header">
+  <div class="d-flex flex-row-reverse" style="margin-right: 25px;">
+    <a href="/login" class="btn btn-secondary" style="margin-right: 15px;">Login</a>
+  </div>
 
-        <!------ Lista de categorias ---------->
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Roupas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Artesanato</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Papelaria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Eletrônicos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Decoração</a>
-              </li>
-        </ul>
-        
-        <!------ Campo para pesquisa ---------->
-        <form class="form-inline my-2 my-lg-0  justify-content-center" >
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-        </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="mt-0 mb-3 text-white">Nome da Empresa</h1>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!------ Formulario de produtos ---------->
-        <div> 
-            <form method="POST" class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate>
-                <h4>Adicionar produto</h4>
-                <div class="form-row">
-                  <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Nome</label>
-                    <input name="nameProduto" type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
-                    <div class="invalid-feedback">
-                        Por favor, informe o nome do produto.
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="validationCustom02">Preço</label>
-                    <input name="valorProduto" type="text" class="form-control" id="validationCustom02" placeholder="Preço" required>
-                    <div class="invalid-feedback">
-                        Por favor, informe seu o preço do produto.
-                    </div>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="col-md-4 mb-3">
-                    <label for="validationCustom03">Quantidade</label>
-                    <input name="qtdProduto" type="number" min="0" class="form-control" id="validationCustom02" placeholder="quantidade" required>
-                    <div class="invalid-feedback">
-                        Por favor, informe a quantidade de produto.
-                    </div>
-                  </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustom01">Descrição</label>
-                      <textarea name="descricaoProduto" class="form-control" id="validationCustom01" placeholder="Descrição" required></textarea>
-                      <div class="invalid-feedback">
-                          Por favor, informe uma descrição do produto.
-                      </div>
-                    </div>
-                </div>
-                <button class="btn btn-secondary" type="submit">Adicionar</button>
-            </form>
+<!------ Lista de categorias ---------->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Roupas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Artesanato</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Papelaria</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Eletrônicos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Decoração</a>
+  </li>
+</ul>
+
+<!------ Campo para pesquisa ---------->
+<form class="form-inline my-2 my-lg-0  justify-content-center">
+  <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+</form>
+
+<!------ Formulario de produtos ---------->
+<div>
+  <form method="POST" class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate>
+    <h4>Adicionar produto</h4>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">Nome</label>
+        <input name="nameProduto" type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
+        <div class="invalid-feedback">
+          Por favor, informe o nome do produto.
         </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">Preço</label>
+        <input name="valorProduto" type="text" class="form-control" id="validationCustom02" placeholder="Preço"
+          required>
+        <div class="invalid-feedback">
+          Por favor, informe seu o preço do produto.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom03">Quantidade</label>
+        <input name="qtdProduto" type="number" min="0" class="form-control" id="validationCustom02"
+          placeholder="quantidade" required>
+        <div class="invalid-feedback">
+          Por favor, informe a quantidade de produto.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">Descrição</label>
+        <input name="descricaoProduto" class="form-control" id="validationCustom01" placeholder="Descrição"
+          required></input>
+        <div class="invalid-feedback">
+          Por favor, informe uma descrição do produto.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-secondary" type="submit">Adicionar</button>
+    <br><br><br><br>
+    <h4>Produtos Adicionados:</h4>
+  </form>
+</div>
+
+
+
+{{#each produtos}}
+<div>
+  <form class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate >
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">Nome</label>
+        <input value="{{nameProduto}}" name="nameProduto" type="text" class="form-control" id="validationCustom01" placeholder="Nome" required>
+        <div class="invalid-feedback">
+          Por favor, informe o nome do produto.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">Preço</label>
+        <input value="{{valorProduto}}" name="valorProduto" type="text" class="form-control" id="validationCustom02" placeholder="Preço"
+          required>
+        <div class="invalid-feedback">
+          Por favor, informe seu o preço do produto.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom03">Quantidade</label>
+        <input value="{{qtdProduto}}" name="qtdProduto" type="number" min="0" class="form-control" id="validationCustom02"
+          placeholder="quantidade" required>
+        <div class="invalid-feedback">
+          Por favor, informe a quantidade de produto.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">Descrição</label>
+        <input value="{{descricaoProduto}}" name="descricaoProduto" class="form-control" id="validationCustom01" placeholder="Descrição"
+          required></input>
+        <div class="invalid-feedback">
+          Por favor, informe uma descrição do produto.
+        </div>
+      </div>
+    </div>
+
+  
+    
+    <a href="/cadastroProduto/{{_id}}" class="btn btn-secondary" type="submit">Deletar</a> 
+    <button class="btn btn-secondary" type="submit">Atualizar</button>
+
+ 
+    
+
+  </form>
+</div>
+{{else}}
+{{/each}}
+
+<!-- 
         <div>
             <form class="needs-validation" style="margin-left: 50px; margin-bottom: 50px;" novalidate>
                 <h4>Outras operações</h4>
@@ -95,3 +158,4 @@
                 </div>
             </form>
         </div>
+-->

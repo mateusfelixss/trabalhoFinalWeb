@@ -29,14 +29,6 @@ router.get('/', async (request, response) => {
     
 });
 
-// router.get('/', function(req, res, next) {
-//     Content.find(function(err, content) {
-//       res.render('index', { title: 'Node Project', contents: content });
-//   });
-// });
-
-
-
 //rota de cadastro de cliente
 router.post('/cadastroCliente', async (request,response) => {
     try{
@@ -128,16 +120,16 @@ router.post('/admEmpresa', async (request,response) => {
 
 // busca de empresas
 router.get('/admEmpresa', async (request, response) => {
-    
-    try{
-        const empresa = await userEmpresa.find(request.body);
-        console.log(empresa)
-        response.render('/admEmpresa', { empresa: empresa.toJSON() })
-    }catch(err){
-        console.log(err);
-        return response.status(400).send({error: 'Falha na busca de Empresas'});
+    response.render('cadastroEmpresa')
+    // try{
+    //     const empresa = await userEmpresa.find(request.body);
+    //     console.log(empresa)
+    //   //  response.render('/admEmpresa', { empresa: empresa.toJSON() })
+    // }catch(err){
+    //     console.log(err);
+    //     return response.status(400).send({error: 'Falha na busca de Empresas'});
           
-    }
+    // }
 });
 
 
@@ -192,7 +184,7 @@ router.post('/cadastroProduto', async (request,response) => {
     try{
         const produto = await userProduto.create(request.body);
 
-        return response.render('produto');
+        return response.render('./produto');
     }catch(err){
         console.log(err);
         return response.status(400).send({error: 'Falha no Cadastrado de Produto'});
@@ -201,15 +193,16 @@ router.post('/cadastroProduto', async (request,response) => {
 
 // busca de produto
 router.get('/cadastroProduto', async (request, response) => {
-    response.render('produto')
-    // try{
-    //     const produto = await userProduto.find(request.body);
-    //     return response.send({ produto })
-    // }catch(err){
-    //     console.log(err);
-    //     return response.status(400).send({error: 'Falha na busca de PRodutos'});
+    //response.render('produto')
+    try{
+        const produtos = await userProduto.find(request.body);
+        response.render('./produto', { produtos: produtos.map( produtos => produtos.toJSON()) })
+       // return response.send({ produto })
+    }catch(err){
+        console.log(err);
+        return response.status(400).send({error: 'Falha na busca de PRodutos'});
           
-    // }
+    }
 });
 //Update de protudo
 router.put('/cadastroProduto/:id', async (request, response) => {
@@ -238,13 +231,15 @@ router.put('/cadastroProduto/:id', async (request, response) => {
 });
 
 // delete de produto
-router.delete('/cadastroProduto/:id', async (request, response) =>{
+router.get('/cadastroProduto/:id', async (request, response) =>{
     const id = request.params.id;
     try {
-       const produto = await userProduto.findByIdAndDelete(id, (err, result) => {
+       const produtos = await userProduto.findByIdAndDelete(id, (err, result) => {
+        //console.log(produtos)
+        response.render('./produto', { produtos: produtos.map( produtos => produtos.toJSON()) })
             if(err)
                 return response.send(500, err)
-        return response.send(result)
+      //  return response.redirect('./produto')
        })
     } catch (error) {
         response.status(500).send({message: 'deu ruim ao remover'})
